@@ -1,3 +1,7 @@
+"""
+Question 3b du travail numérique
+"""
+
 import matplotlib.pyplot as plt
 import question3b_fct
 

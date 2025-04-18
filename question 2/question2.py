@@ -1,3 +1,7 @@
+"""
+Question 2 du travail numérique
+"""
+
 import matplotlib.pyplot as plt
 import question2_fct
 

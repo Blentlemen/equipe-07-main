@@ -1,3 +1,7 @@
+"""
+Question 3a du travail numérique
+"""
+
 import question3a_fct
 
 PARAMETRES = question3a_fct.initialiser_geo()
