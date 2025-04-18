@@ -19,8 +19,8 @@ BLOQUER = np.zeros((NY, NX), dtype=bool)
 
 PARAMETRES = A,B,D,C,E,F,N,DX,LX,LY,NX,NY,X,Y,X_GRID,Y_GRID,V,BLOQUER
 
-V, BLOQUER = question3c_fct.placer_dynodes_haut(V, BLOQUER, PARAMETRES)
 V, BLOQUER = question3c_fct.placer_dynodes_bas(V, BLOQUER, PARAMETRES)
+V, BLOQUER = question3c_fct.placer_dynodes_haut(V, BLOQUER, PARAMETRES)
 
 RES, BLOQUER = question3c_fct.relaxation(V, BLOQUER, PARAMETRES, variation=1e-5, max_iter=10000)
 

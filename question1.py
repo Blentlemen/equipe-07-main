@@ -7,6 +7,7 @@ PARAMETRES = question1_fct.initialiser_geo()
 X_GRID, Y_GRID, V, BLOQUER = PARAMETRES[14:18]
 
 V, BLOQUER = question1_fct.placer_dynodes_haut(V, BLOQUER, PARAMETRES)
+
 V, BLOQUER = question1_fct.placer_dynodes_bas(V, BLOQUER, PARAMETRES)
 
 RES, BLOQUER = question1_fct.relaxation(V, BLOQUER, PARAMETRES, variation=1e-5, max_iter=10000)

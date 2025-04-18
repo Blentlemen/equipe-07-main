@@ -10,17 +10,20 @@ def placer_dynodes_bas(v, bloquer, parametres):
     a, b, c, d, e = parametres[0:5]
     n, dx = parametres[6:8]
 
-    for i in range(n//2 + n%2):
+    for i in range (n//2 + n%2):
+        a, b, c, d, e = parametres[0:5]
+        dx = parametres[7]
+
         pot_dyn = (2*i+1) * 100
         vert_start = b
         vert_end = b + e
         horiz_start = a + i*(c+d)
         horiz_end = horiz_start + c
 
-        ix_start = int(horiz_start/dx)
-        ix_end = int(horiz_end/dx)
-        iy_start = int(vert_start/dx)
-        iy_end = int(vert_end/dx)
+        ix_start = int(horiz_start*(1/dx))
+        ix_end = int(horiz_end*(1/dx))
+        iy_start = int(vert_start*(1/dx))
+        iy_end = int(vert_end*(1/dx))
 
         v[iy_start:iy_end, ix_start:ix_end] = pot_dyn
         bloquer[iy_start:iy_end, ix_start:ix_end] = True
@@ -30,22 +33,23 @@ def placer_dynodes_haut(v, bloquer, parametres):
 
     a, b, c, d, e, f, n, dx = parametres[0:8]
 
-    for i in range(n//2):
+    for i in range (n//2):
+        a, b, c, d, e, f = parametres[0:6]
+        dx = parametres[7]
 
         pot_dyn = (2*(i+1)) * 100
-        vert_start = f-b
+        vert_start = f - b - e
         vert_end = vert_start + e
-        horiz_start = a + (i+1)*c +d/2 + i*d - c/2
+        horiz_start = a + (i + 1 - 0.5)*c + (i + 0.5)*d
         horiz_end = horiz_start + c
 
-        ix_start = int(horiz_start/dx)
-        ix_end = int(horiz_end/dx)
-        iy_start = int(vert_start/dx)
-        iy_end = int(vert_end/dx)
+        ix_start = int(horiz_start*(1/dx))
+        ix_end = int(horiz_end*(1/dx))
+        iy_start = int(vert_start*(1/dx))
+        iy_end = int(vert_end*(1/dx))
 
         v[iy_start:iy_end, ix_start:ix_end] = pot_dyn
         bloquer[iy_start:iy_end, ix_start:ix_end] = True
-
     return v, bloquer
 
 """
