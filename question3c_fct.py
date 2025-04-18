@@ -1,11 +1,12 @@
 import numpy as np
 
-"""
-Fonctions qui permettent de placer les dynodes sur le PM
-    - Renvoie la matrice de potentiel avec les dynodes avec une
-      matrice unique pour les dynodes qui empèche leur modification pendant la relaxation
-"""
+
 def placer_dynodes_bas(v, bloquer, parametres):
+    """
+    Fonctions qui permettent de placer les dynodes sur le PM
+        - Renvoie la matrice de potentiel avec les dynodes avec une
+          matrice unique pour les dynodes qui empèche leur modification pendant la relaxation
+    """
 
     a, b, c, d, e = parametres[0:5]
     n, dx = parametres[6:8]
@@ -30,6 +31,11 @@ def placer_dynodes_bas(v, bloquer, parametres):
     return v, bloquer
 
 def placer_dynodes_haut(v, bloquer, parametres):
+    """
+    Fonctions qui permettent de placer les dynodes sur le PM
+        - Renvoie la matrice de potentiel avec les dynodes avec une
+          matrice unique pour les dynodes qui empèche leur modification pendant la relaxation
+    """
 
     a, b, c, d, e, f, n, dx = parametres[0:8]
 
@@ -52,11 +58,12 @@ def placer_dynodes_haut(v, bloquer, parametres):
         bloquer[iy_start:iy_end, ix_start:ix_end] = True
     return v, bloquer
 
-"""
-Fonction de relaxation pour trouver le potentiel en tout point
-    - Renvoie le potentiel partout dans le PM
-"""
+
 def relaxation(v, bloquer, parametres, variation=1e-5, max_iter=1000000):
+    """
+    Fonction de relaxation pour trouver le potentiel en tout point
+        - Renvoie le potentiel partout dans le PM
+    """
 
     nx, ny = parametres[10:12]
 
@@ -92,12 +99,13 @@ def relaxation(v, bloquer, parametres, variation=1e-5, max_iter=1000000):
 
     return v, bloquer
 
-"""
-Fonction pour trouver le champ électrique du potentiel trouvé par la relaxation
-    - Renvoie le champ électrique sous forme de matrice avec ses composantes (x, y)
-      ainsi que la norme en tout point
-"""
+
 def champ_elec(res, parametres):
+    """
+    Fonction pour trouver le champ électrique du potentiel trouvé par la relaxation
+        - Renvoie le champ électrique sous forme de matrice avec ses composantes (x, y)
+          ainsi que la norme en tout point
+    """
 
     dx = parametres[7]
 
@@ -106,11 +114,12 @@ def champ_elec(res, parametres):
 
     return [ex, ey, e_norm]
 
-"""
-Fonction pour trouver le champ en un point (x, y) précis
-    - Renvoie les composantes spécifiques du champ électrique (x, y)
-"""
+
 def eulerer_lechamp(x_p, y_p, ex, ey, dx):
+    """
+    Fonction pour trouver le champ en un point (x, y) précis
+        - Renvoie les composantes spécifiques du champ électrique (x, y)
+    """
 
     i = int(y_p / dx)
     j = int(x_p / dx)
@@ -135,11 +144,12 @@ def eulerer_lechamp(x_p, y_p, ex, ey, dx):
 
         return 0, 0
 
-"""
-Fonctions qui donnent les positions des dynodes en mm dans le PM
-    - Renvoie les coordonnées (y_start:y_end, x_start:x_end) de chaque dynode
-"""
+
 def position_dynodes_bas(i, parametres):
+    """
+    Fonctions qui donnent les positions des dynodes en mm dans le PM
+        - Renvoie les coordonnées (y_start:y_end, x_start:x_end) de chaque dynode
+    """
 
     a, b, c, d, e, f = parametres[0:6]
 
@@ -152,6 +162,10 @@ def position_dynodes_bas(i, parametres):
     return [vert_start, vert_end, horiz_start, horiz_end, pot]
 
 def position_dynodes_haut(i, parametres):
+    """
+    Fonctions qui donnent les positions des dynodes en mm dans le PM
+        - Renvoie les coordonnées (y_start:y_end, x_start:x_end) de chaque dynode
+    """
 
     a, b, c, d, e, f = parametres[0:6]
 
@@ -163,12 +177,13 @@ def position_dynodes_haut(i, parametres):
 
     return [vert_start, vert_end, horiz_start, horiz_end, pot]
 
-"""
-Fonctions qui vérifient si l'électron entre en contact avec les dynodes
-    - Renvoie un booléen pour savoir si il y a contact avec les dynode
-      et renvoie la position de contact si True
-"""
+
 def contact_dyn_bas(x_new, y_new, x_old, y_old, parametres):
+    """
+    Fonctions qui vérifient si l'électron entre en contact avec les dynodes
+        - Renvoie un booléen pour savoir si il y a contact avec les dynode
+          et renvoie la position de contact si True
+    """
 
     f, n = parametres[5:7]
     lx = parametres[8]
@@ -221,6 +236,11 @@ def contact_dyn_bas(x_new, y_new, x_old, y_old, parametres):
     return [False, x_new, y_new]
 
 def contact_dyn_haut(x_new, y_new, x_old, y_old, parametres):
+    """
+    Fonctions qui vérifient si l'électron entre en contact avec les dynodes
+        - Renvoie un booléen pour savoir si il y a contact avec les dynode
+          et renvoie la position de contact si True
+    """
 
     f, n = parametres[5:7]
     lx = parametres[8]
@@ -272,11 +292,12 @@ def contact_dyn_haut(x_new, y_new, x_old, y_old, parametres):
 
     return [False, x_new, y_new]
 
-"""
-Fonction qui donnent le chemin de l'électron dans le PM avec les rebonds sur les dynodes
-    - Renvoie les coordonnées (x, y) de l'électron à chaque pas de temps dans un array
-"""
+
 def position_el_rebond(x0, y0, vx0, vy0, ex, ey, dt, it_max, parametres):
+    """
+    Fonction qui donnent le chemin de l'électron dans le PM avec les rebonds sur les dynodes
+        - Renvoie les coordonnées (x, y) de l'électron à chaque pas de temps dans un array
+    """
 
     dx, lx, ly = parametres[7:10]
 

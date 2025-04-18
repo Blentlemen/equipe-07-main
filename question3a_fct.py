@@ -1,10 +1,11 @@
 import numpy as np
 
-"""
-Fonction qui définit la géométrie du PM pour les question 1, 2, 3a) et 3b)
-    - Renvoie tout les termes nécessaires pour les calculs des questions
-"""
+
 def initialiser_geo():
+    """
+    Fonction qui définit la géométrie du PM pour les question 1, 2, 3a) et 3b)
+        - Renvoie tout les termes nécessaires pour les calculs des questions
+    """
 
     #initialiser la géométrie
     a, b, c, d, e, f = 3, 2, 4, 2, 0.2, 6
@@ -25,12 +26,13 @@ def initialiser_geo():
 
     return [a,b,c,d,e,f,n,dx,lx,ly,nx,ny,x,y,x_grid,y_grid,v,bloquer]
 
-"""
-Fonctions qui permettent de placer les dynodes sur le PM
-    - Renvoie la matrice de potentiel avec les dynodes avec une
-      matrice unique pour les dynodes qui empèche leur modification pendant la relaxation
-"""
+
 def placer_dynodes_bas(v, bloquer, parametres):
+    """
+    Fonctions qui permettent de placer les dynodes sur le PM
+        - Renvoie la matrice de potentiel avec les dynodes avec une
+          matrice unique pour les dynodes qui empèche leur modification pendant la relaxation
+    """
 
     a, b, c, d, e = parametres[0:5]
     n, dx = parametres[6:8]
@@ -55,6 +57,11 @@ def placer_dynodes_bas(v, bloquer, parametres):
     return v, bloquer
 
 def placer_dynodes_haut(v, bloquer, parametres):
+    """
+    Fonctions qui permettent de placer les dynodes sur le PM
+        - Renvoie la matrice de potentiel avec les dynodes avec une
+          matrice unique pour les dynodes qui empèche leur modification pendant la relaxation
+    """
 
     a, b, c, d, e, f, n, dx = parametres[0:8]
 
@@ -77,11 +84,12 @@ def placer_dynodes_haut(v, bloquer, parametres):
         bloquer[iy_start:iy_end, ix_start:ix_end] = True
     return v, bloquer
 
-"""
-Fonction de relaxation pour trouver le potentiel en tout point
-    - Renvoie le potentiel partout dans le PM
-"""
+
 def relaxation(v, bloquer, parametres, variation=1e-5, max_iter=1000000):
+    """
+    Fonction de relaxation pour trouver le potentiel en tout point
+        - Renvoie le potentiel partout dans le PM
+    """
 
     nx, ny = parametres[10:12]
 
@@ -117,12 +125,13 @@ def relaxation(v, bloquer, parametres, variation=1e-5, max_iter=1000000):
 
     return v, bloquer
 
-"""
-Fonction pour trouver le champ électrique du potentiel trouvé par la relaxation
-    - Renvoie le champ électrique sous forme de matrice avec ses composantes (x, y)
-      ainsi que la norme en tout point
-"""
+
 def champ_elec(res, parametres):
+    """
+    Fonction pour trouver le champ électrique du potentiel trouvé par la relaxation
+        - Renvoie le champ électrique sous forme de matrice avec ses composantes (x, y)
+          ainsi que la norme en tout point
+    """
 
     dx = parametres[7]
 
@@ -131,11 +140,12 @@ def champ_elec(res, parametres):
 
     return [ex, ey, e_norm]
 
-"""
-Fonction pour trouver le champ en un point (x, y) précis
-    - Renvoie les composantes spécifiques du champ électrique (x, y)
-"""
+
 def eulerer_lechamp(x_p, y_p, ex, ey, dx):
+    """
+    Fonction pour trouver le champ en un point (x, y) précis
+        - Renvoie les composantes spécifiques du champ électrique (x, y)
+    """
 
     i = int(y_p / dx)
     j = int(x_p / dx)
@@ -160,11 +170,12 @@ def eulerer_lechamp(x_p, y_p, ex, ey, dx):
 
         return 0, 0
 
-"""
-Fonction qui donne le déplacement d'un électron dans le PM
-    - Renvoie les coordonnées (x, y) de l'électron à chaque pas de temps dans un array
-"""
+
 def position_el(x_ini, y_ini, vx_ini, vy_ini, ex, ey, step, max_it, parametres):
+    """
+    Fonction qui donne le déplacement d'un électron dans le PM
+        - Renvoie les coordonnées (x, y) de l'électron à chaque pas de temps dans un array
+    """
 
     q = -1.602e-19
     m = 9.109e-31
