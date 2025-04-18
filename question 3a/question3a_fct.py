@@ -1,3 +1,11 @@
+"""
+Document qui donne les fonctions nécessaire pour le bon fonctionnement du PM de la question 3c
+    - Place les dynodes sur le PM
+    - Calcule le potentiel de chaque point du PM
+    - Calcule le champ électrique du PM
+    - Calcule le chemin de l'électron dans le PM sans les rebonds
+"""
+
 import numpy as np
 
 

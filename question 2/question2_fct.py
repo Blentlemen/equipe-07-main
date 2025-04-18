@@ -1,3 +1,11 @@
+"""
+Document qui donne les fonctions pour la question 2
+    - PLace les dynodes dans le PM
+    - Calcule le potentiel dans le PM
+    - Calcule le champ électrique dans le PM
+    - Affiche le champ électrique sur le PM
+"""
+
 import numpy as np
 
 

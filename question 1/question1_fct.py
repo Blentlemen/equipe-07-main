@@ -1,3 +1,10 @@
+"""
+Document qui donne les fonctions nécessaires pour la question 1
+    - Place les dynodes sur le PM
+    - Calcule le potentiel en tout point du PM
+    - Affiche le potentiel sur le PM
+"""
+
 import numpy as np
 
 def initialiser_geo():
