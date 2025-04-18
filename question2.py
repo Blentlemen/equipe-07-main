@@ -1,17 +1,17 @@
 import matplotlib.pyplot as plt
-import fonctions
+import question2_fct
 
 
-PARAMETRES = fonctions.initialiser_geo()
+PARAMETRES = question2_fct.initialiser_geo()
 
 X_GRID, Y_GRID, V, BLOQUER = PARAMETRES[14:18]
 
-V, BLOQUER = fonctions.placer_dynodes_haut(V, BLOQUER, PARAMETRES)
-V, BLOQUER = fonctions.placer_dynodes_bas(V, BLOQUER, PARAMETRES)
+V, BLOQUER = question2_fct.placer_dynodes_haut(V, BLOQUER, PARAMETRES)
+V, BLOQUER = question2_fct.placer_dynodes_bas(V, BLOQUER, PARAMETRES)
 
-RES, BLOQUER = fonctions.relaxation(V, BLOQUER, PARAMETRES, variation=1e-5, max_iter=10000)
+RES, BLOQUER = question2_fct.relaxation(V, BLOQUER, PARAMETRES, variation=1e-5, max_iter=10000)
 
-EX, EY, E_NORM = fonctions.champ_elec(RES, PARAMETRES)
+EX, EY, E_NORM = question2_fct.champ_elec(RES, PARAMETRES)
 
 plt.figure(figsize=(10, 5))
 plt.title("Champ électrique dans le tube photomultiplicateur")

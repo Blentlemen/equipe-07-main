@@ -1,31 +1,6 @@
 import numpy as np
 
 """
-Fonction qui définit la géométrie du PM pour les question 1, 2, 3a) et 3b)
-    - Renvoie tout les termes nécessaires pour les calculs des questions
-"""
-def initialiser_geo():
-
-    #initialiser la géométrie
-    a, b, c, d, e, f = 3, 2, 4, 2, 0.2, 6
-    n = 4
-    dx = 0.1 # step
-
-    largeur = (2*a + (n+1)*(c/2) + (n-1)*(d/2))
-    lx,ly = largeur, f
-    nx, ny = int(lx/dx), int(ly/dx)
-
-    x = np.linspace(0, lx, nx)
-    y = np.linspace(-ly/2, ly/2, ny)
-    x_grid, y_grid = np.meshgrid(x, y)
-
-    #initialiser le potentiel à 0 partout
-    v = np.zeros((ny,nx))
-    bloquer = np.zeros((ny,nx), dtype=bool)
-
-    return [a,b,c,d,e,f,n,dx,lx,ly,nx,ny,x,y,x_grid,y_grid,v,bloquer]
-
-"""
 Fonctions qui permettent de placer les dynodes sur le PM
     - Renvoie la matrice de potentiel avec les dynodes avec une
       matrice unique pour les dynodes qui empèche leur modification pendant la relaxation
@@ -155,62 +130,6 @@ def eulerer_lechamp(x_p, y_p, ex, ey, dx):
     else:
 
         return 0, 0
-
-"""
-Fonction qui donne le déplacement d'un électron dans le PM
-    - Renvoie les coordonnées (x, y) de l'électron à chaque pas de temps dans un array
-"""
-def position_el(x_ini, y_ini, vx_ini, vy_ini, ex, ey, step, max_it, parametres):
-
-    q = -1.602e-19
-    m = 9.109e-31
-
-    x = [x_ini]
-    y = [y_ini]
-    vx = vx_ini
-    vy = vy_ini
-
-    dx = parametres[7]
-    lx, ly = parametres[8:10]
-
-    ex_val, ey_val = eulerer_lechamp(x_ini, y_ini, ex, ey, dx)
-
-    ax = (q*ex_val) / m
-    ay = (q*ey_val) / m
-
-    vx += ax * step
-    vy += ay * step
-
-    x_new = float(x_ini + vx * step)
-    y_new = float(y_ini + vy * step)
-
-    x.append(x_new)
-    y.append(y_new)
-
-    for _ in range(max_it):
-
-        ex_val, ey_val = eulerer_lechamp(x_new, y_new, ex, ey, dx)
-
-        ax = (q*ex_val) / m
-        ay = (q*ey_val) / m
-
-        vx += ax * step
-        vy += ay * step
-
-        x_new = float(x_new + vx * step)
-        y_new = float(y_new + vy * step)
-
-        x.append(x_new)
-        y.append(y_new)
-
-        if not (0 <= x_new < lx and abs(y_new) <= ly/2):
-
-            print("L'électron a crissé son camp")
-            break
-
-    print("Champ au point de départ :", eulerer_lechamp(x_ini, y_ini, ex, ey, dx))
-
-    return np.array(x), np.array(y)
 
 """
 Fonctions qui donnent les positions des dynodes en mm dans le PM

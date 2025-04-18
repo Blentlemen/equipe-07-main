@@ -1,15 +1,15 @@
 import matplotlib.pyplot as plt
-import fonctions
+import question1_fct
 
 
-PARAMETRES = fonctions.initialiser_geo()
+PARAMETRES = question1_fct.initialiser_geo()
 
 X_GRID, Y_GRID, V, BLOQUER = PARAMETRES[14:18]
 
-V, BLOQUER = fonctions.placer_dynodes_haut(V, BLOQUER, PARAMETRES)
-V, BLOQUER = fonctions.placer_dynodes_bas(V, BLOQUER, PARAMETRES)
+V, BLOQUER = question1_fct.placer_dynodes_haut(V, BLOQUER, PARAMETRES)
+V, BLOQUER = question1_fct.placer_dynodes_bas(V, BLOQUER, PARAMETRES)
 
-RES, BLOQUER = fonctions.relaxation(V, BLOQUER, PARAMETRES, variation=1e-5, max_iter=10000)
+RES, BLOQUER = question1_fct.relaxation(V, BLOQUER, PARAMETRES, variation=1e-5, max_iter=10000)
 CP = plt.contourf(X_GRID, Y_GRID, RES, levels=100, cmap="plasma")
 
 plt.contour(X_GRID, Y_GRID, BLOQUER, levels=[0.5], colors='black', linewidths=1)

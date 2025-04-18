@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import fonctions
+import question3d_fct
 
 A, B, C, D, E, F = 4, 3, 6, 4, 0.2, 10
 N = 12
@@ -23,12 +23,12 @@ DX, LX, LY = PARAMETRES[7:10]
 
 X_GRID, Y_GRID, V, BLOQUER = PARAMETRES[14:18]
 
-V, BLOQUER = fonctions.placer_dynodes_haut(V, BLOQUER, PARAMETRES)
-V, BLOQUER = fonctions.placer_dynodes_bas(V, BLOQUER, PARAMETRES)
+V, BLOQUER = question3d_fct.placer_dynodes_haut(V, BLOQUER, PARAMETRES)
+V, BLOQUER = question3d_fct.placer_dynodes_bas(V, BLOQUER, PARAMETRES)
 
-RES, BLOQUER = fonctions.relaxation(V, BLOQUER, PARAMETRES, variation=1e-3, max_iter=4000)
+RES, BLOQUER = question3d_fct.relaxation(V, BLOQUER, PARAMETRES, variation=1e-3, max_iter=4000)
 
-EX, EY, E_NORM = fonctions.champ_elec(RES, PARAMETRES)[0:5]
+EX, EY, E_NORM = question3d_fct.champ_elec(RES, PARAMETRES)[0:5]
 
 X0 = 0
 Y0 = 0
@@ -37,7 +37,7 @@ VY0 = 0
 DT = 0.00000001
 IT_MAX = 50000
 
-traj_x, traj_y = fonctions.position_el_rebond(X0, Y0, VX0, VY0, EX, EY, DT, IT_MAX, PARAMETRES)
+traj_x, traj_y = question3d_fct.position_el_rebond(X0, Y0, VX0, VY0, EX, EY, DT, IT_MAX, PARAMETRES)
 
 fig, axe = plt.subplots(figsize=(10, 6))
 
@@ -84,4 +84,4 @@ plt.show()
 
 print("Position finale :", traj_x[-1], traj_y[-1])
 print("Déplacement total :", traj_x[-1] - traj_x[0], traj_y[-1] - traj_y[0])
-print("Champ au point de départ :", fonctions.eulerer_lechamp(X0, X0, EX, EY, DX))
+print("Champ au point de départ :", question3d_fct.eulerer_lechamp(X0, X0, EX, EY, DX))
