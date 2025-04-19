@@ -2,6 +2,10 @@
 Question 3a du travail numérique
 """
 
+# Frédéric-Alexandre Caouette NI : 537275485
+# Alexis Gautier NI : 537289373
+# Théo mailhot NI : 537291728
+
 import question3a_fct
 
 PARAMETRES = question3a_fct.initialiser_geo()

@@ -6,6 +6,10 @@ Document qui donne les fonctions pour la question 2
     - Affiche le champ électrique sur le PM
 """
 
+# Frédéric-Alexandre Caouette NI : 537275485
+# Alexis Gautier NI : 537289373
+# Théo mailhot NI : 537291728
+
 import numpy as np
 
 

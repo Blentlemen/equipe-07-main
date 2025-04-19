@@ -2,6 +2,10 @@
 Question 3d du travail numérique
 """
 
+# Frédéric-Alexandre Caouette NI : 537275485
+# Alexis Gautier NI : 537289373
+# Théo mailhot NI : 537291728
+
 import numpy as np
 import matplotlib.pyplot as plt
 import question3d_fct
@@ -47,7 +51,7 @@ CP = axe.contourf(X_GRID, Y_GRID, E_NORM, levels=100, cmap='plasma')
 plt.colorbar(CP, label="|E| (V/m)")
 
 SAUT = 2
-"""
+
 axe.quiver(X_GRID[::SAUT, ::SAUT], Y_GRID[::SAUT, ::SAUT], EX[::SAUT, ::SAUT],
                EY[::SAUT, ::SAUT], color='white', scale=6000)
 
@@ -58,7 +62,7 @@ axe.set_ylabel("y (mm)")
 axe.set_title("Animation de la trajectoire de l'électron")
 axe.legend()
 axe.axis('equal')
-"""
+
 #-------------------------------affichage de la trajectoire x(t)-------------------------------#
 
 plt.contourf(X_GRID, Y_GRID, E_NORM, levels=100, cmap='plasma')
@@ -66,9 +70,6 @@ plt.contour(X_GRID, Y_GRID, BLOQUER, levels=[0.5], colors='black', linewidths=1)
 
 SAUT = 2
 
-plt.quiver(X_GRID[::SAUT, ::SAUT], Y_GRID[::SAUT, ::SAUT],
-        EX[::SAUT, ::SAUT], EY[::SAUT, ::SAUT],
-        color='white', scale=6000)
 plt.plot(traj_x, traj_y, 'y-', label="Trajectoire")
 plt.plot(X0, Y0, 'go', label="Départ (x0,y0)")
 plt.xlabel("x (mm)")

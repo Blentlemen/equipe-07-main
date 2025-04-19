@@ -7,6 +7,10 @@ Document qui donne les fonctions nécessaire pour le bon fonctionnement du PM de
     - Affiche le chemin sur le PM avec le potentiel et le champ électrique
 """
 
+# Frédéric-Alexandre Caouette NI : 537275485
+# Alexis Gautier NI : 537289373
+# Théo mailhot NI : 537291728
+
 import numpy as np
 
 

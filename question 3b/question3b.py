@@ -2,6 +2,10 @@
 Question 3b du travail numérique
 """
 
+# Frédéric-Alexandre Caouette NI : 537275485
+# Alexis Gautier NI : 537289373
+# Théo mailhot NI : 537291728
+
 import matplotlib.pyplot as plt
 import question3b_fct
 
