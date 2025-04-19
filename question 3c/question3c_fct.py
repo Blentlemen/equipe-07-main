@@ -193,7 +193,6 @@ def contact_dyn_bas(x_new, y_new, x_old, y_old, parametres):
         - Renvoie un booléen pour savoir si il y a contact avec les dynode
           et renvoie la position de contact si True
     """
-
     f, n = parametres[5:7]
     lx = parametres[8]
 

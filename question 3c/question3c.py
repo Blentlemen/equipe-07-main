@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import question3c_fct
 
-A, B, C, D, E, F = 4, 2, 6, 4, 0.2, 8
+A, B, C, D, E, F = 4, 2, 4, 6, 0.2, 8
 N = 4
 DX = 0.1
 
@@ -21,7 +21,7 @@ X_GRID, Y_GRID = np.meshgrid(X, Y)
 V = np.zeros((NY, NX))
 BLOQUER = np.zeros((NY, NX), dtype=bool)
 
-PARAMETRES = A,B,D,C,E,F,N,DX,LX,LY,NX,NY,X,Y,X_GRID,Y_GRID,V,BLOQUER
+PARAMETRES = A,B,C,D,E,F,N,DX,LX,LY,NX,NY,X,Y,X_GRID,Y_GRID,V,BLOQUER
 
 V, BLOQUER = question3c_fct.placer_dynodes_bas(V, BLOQUER, PARAMETRES)
 V, BLOQUER = question3c_fct.placer_dynodes_haut(V, BLOQUER, PARAMETRES)
@@ -49,9 +49,6 @@ SAUT = 2
 axe.quiver(X_GRID[::SAUT, ::SAUT], Y_GRID[::SAUT, ::SAUT], EX[::SAUT, ::SAUT],
                EY[::SAUT, ::SAUT], color='white', scale=6000)
 
-line, = axe.plot([], [], 'y-', label="Trajectoire de l'électron")
-point, = axe.plot([], [], 'go')
-
 axe.set_xlim(0, LX)
 axe.set_ylim(-LY/2, LY/2)
 axe.set_xlabel("x (mm)")
@@ -59,14 +56,6 @@ axe.set_ylabel("y (mm)")
 axe.set_title("Animation de la trajectoire de l'électron")
 axe.legend()
 axe.axis('equal')
-
-def update(frame):
-    """
-    Met à jour la position de l'électron pour chaque step
-    """
-    line.set_data(traj_x[:frame], traj_y[:frame])  # Trace la trajectoire jusqu'au frame courant
-    point.set_data(traj_x[frame-1], traj_y[frame-1])  # Place le point sur la position actuelle
-    return line, point
 
 #-------------------------------affichage de la trajectoire x(t)-------------------------------#
 
