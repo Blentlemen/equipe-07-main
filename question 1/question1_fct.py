@@ -6,8 +6,8 @@ Document qui donne les fonctions nécessaires pour la question 1
 """
 
 # Frédéric-Alexandre Caouette NI : 537275485
-# Alexis Gautier NI : 537289373
-# Théo mailhot NI : 537291728
+# Alexis Gauthier NI : 537289373
+# Théo Mailhot NI : 537291728
 
 import numpy as np
 

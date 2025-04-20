@@ -3,8 +3,8 @@ Question 3c du travail numérique
 """
 
 # Frédéric-Alexandre Caouette NI : 537275485
-# Alexis Gautier NI : 537289373
-# Théo mailhot NI : 537291728
+# Alexis Gauthier NI : 537289373
+# Théo Mailhot NI : 537291728
 
 import numpy as np
 import matplotlib.pyplot as plt
